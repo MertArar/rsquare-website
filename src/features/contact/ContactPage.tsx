@@ -144,7 +144,7 @@ export default function ContactPage() {
               <InfoLine
                 icon={<FiMail />}
                 title="Email"
-                text="hello@rsquarestudio.com"
+                text="rsquarestudio.game@gmail.com"
               />
 
               <InfoLine
