@@ -8,7 +8,7 @@ import { TbRocket } from "react-icons/tb";
 import { FaSteam, FaGooglePlay, FaApple } from "react-icons/fa";
 import { SiEpicgames } from "react-icons/si";
 
-import Hero1 from "@/assets/cta.png";
+import Hero1 from "@/assets/Hero5.png";
 
 type PlatformItem = {
   number: string;
