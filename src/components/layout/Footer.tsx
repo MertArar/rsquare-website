@@ -16,6 +16,7 @@ type FooterLink = {
 
 type FooterGroupProps = {
   title: string;
+  titleHref?: string;
   links: FooterLink[];
 };
 
@@ -108,6 +109,7 @@ export default function Footer() {
 
             <FooterGroup
               title="Games"
+              titleHref="/games"
               links={[
                 { label: "Mission: Midnight", href: "/games/mission-midnight" },
                 { label: "Ancient Anomaly", href: "/games/ancient-anomaly" },
@@ -120,7 +122,7 @@ export default function Footer() {
               links={[
                 { label: "Career", href: "/career" },
                 { label: "Contact", href: "/contact" },
-                { label: "Share Your Game", href: "/contact" },
+                { label: "Share Your Game", href: "/share-your-game" },
               ]}
             />
           </div>
@@ -177,7 +179,7 @@ export default function Footer() {
               className="flex flex-wrap items-center gap-5 lg:justify-end"
             >
               <a
-                href="#"
+                href="https://www.linkedin.com/company/rsquare-studio/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.18em] text-white/60 transition-colors duration-300 hover:text-[#c12030]"
@@ -186,7 +188,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="#"
+                href="https://www.instagram.com/rsquaregamestudio/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.18em] text-white/60 transition-colors duration-300 hover:text-[#c12030]"
@@ -234,7 +236,7 @@ export default function Footer() {
   );
 }
 
-function FooterGroup({ title, links }: FooterGroupProps) {
+function FooterGroup({ title, titleHref, links }: FooterGroupProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -242,9 +244,21 @@ function FooterGroup({ title, links }: FooterGroupProps) {
       transition={{ duration: 0.65 }}
       viewport={{ once: true }}
     >
-      <p className="text-[11px] uppercase tracking-[0.3em] text-white/34">
-        {title}
-      </p>
+      <div className="flex h-[14px] items-center">
+        {titleHref ? (
+          <Link
+            href={titleHref}
+            className="group/title relative inline-flex w-fit items-center text-[11px] leading-none uppercase tracking-[0.3em] text-white/34 transition-colors duration-300 hover:text-white"
+          >
+            <span>{title}</span>
+            <span className="absolute left-0 -bottom-1 h-[1px] w-full origin-left scale-x-0 bg-white transition-transform duration-300 ease-out group-hover/title:scale-x-100" />
+          </Link>
+        ) : (
+          <p className="text-[11px] leading-none uppercase tracking-[0.3em] text-white/34">
+            {title}
+          </p>
+        )}
+      </div>
 
       <div className="mt-5 flex flex-col gap-3">
         {links.map((link) => (
