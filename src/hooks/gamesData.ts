@@ -11,6 +11,7 @@ import gameImg1 from "@/assets/Hero1.png";
 import hero2 from "@/assets/Hero2.png";
 import hero5 from "@/assets/Hero5.png";
 import gameImg2 from "@/assets/Hero2.png";
+import bg2 from "@/assets/bg2.png";
 
 /* BE PATIENT */
 import hero3 from "@/assets/Hero3.png";
@@ -95,7 +96,7 @@ export const gamesData: GameDataItem[] = [
     label: "Mystery Adventure",
     heroImage: hero2,
     platformBgImage: hero5,
-    backgroundImage: hero1,
+    backgroundImage: bg2,
     logo: null,
     platforms: ["steam", "epic"],
     intro: {
@@ -129,7 +130,7 @@ export const gamesData: GameDataItem[] = [
     label: "Trap Platformer",
     heroImage: hero3,
     platformBgImage: hero6,
-    backgroundImage: hero1,
+    backgroundImage: hero3,
     logo: null,
     platforms: ["steam", "googleplay", "appstore"],
     intro: {

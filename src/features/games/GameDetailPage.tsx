@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { Fragment, useState, type ReactNode } from "react";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-import type { StaticImageData } from "next/image";
 import { FaSteam, FaGooglePlay, FaApple } from "react-icons/fa";
 import { SiEpicgames } from "react-icons/si";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
@@ -67,6 +67,15 @@ const BrushDivider = () => (
     </svg>
   </div>
 );
+
+function PlatformDivider() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none h-12 w-px bg-gradient-to-b from-transparent via-white/25 to-transparent"
+    />
+  );
+}
 
 const BrushImage = ({ src, alt, className = "" }: BrushImageProps) => (
   <div className={`relative overflow-hidden rounded-xl ${className}`}>
@@ -183,7 +192,7 @@ export default function GameDetailPage({ slug }: GameDetailPageProps) {
           className="absolute inset-0 h-full w-full object-cover opacity-40 saturate-110"
         />
 
-        <div className="absolute inset-0 bg-[#0d0d0d]/55" />
+        <div className="absolute inset-0 bg-[#0d0d0d]/5" />
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0d0d0d] to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0d0d0d] to-transparent" />
 
@@ -192,24 +201,25 @@ export default function GameDetailPage({ slug }: GameDetailPageProps) {
             Available / Planned Platforms
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-5">
-            {game.platforms.map((platform) => {
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-6">
+            {game.platforms.map((platform, index) => {
               const item = platformIcons[platform as PlatformKey];
               if (!item) return null;
 
               return (
-                <div
-                  key={platform}
-                  className="group flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-6 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-yellow-400/50 hover:bg-white/[0.08]"
-                >
-                  <span className="text-2xl text-white/80 transition group-hover:text-yellow-400">
-                    {item.icon}
-                  </span>
+                <Fragment key={platform}>
+                  <div className="group flex items-center gap-3">
+                    <span className="text-[34px] text-white/85 transition duration-300 group-hover:text-white">
+                      {item.icon}
+                    </span>
 
-                  <span className="text-sm uppercase tracking-[0.22em] text-white/75">
-                    {item.label}
-                  </span>
-                </div>
+                    <span className="text-sm uppercase tracking-[0.24em] text-white/75 transition duration-300 group-hover:text-white">
+                      {item.label}
+                    </span>
+                  </div>
+
+                  {index < game.platforms.length - 1 && <PlatformDivider />}
+                </Fragment>
               );
             })}
           </div>
@@ -219,14 +229,17 @@ export default function GameDetailPage({ slug }: GameDetailPageProps) {
       {/* DETAILS SECTION */}
       <section className="relative overflow-hidden bg-[#0d0d0d] py-24 md:py-32">
         <div className="absolute inset-0">
-          <img
-            src={getImageSrc(game.backgroundImage)}
+          <Image
+            src={game.backgroundImage}
             alt=""
-            className="h-full w-full object-cover opacity-40"
+            fill
+            sizes="100vw"
+            quality={100}
+            className="object-cover object-center opacity-55"
           />
 
-          <div className="absolute inset-0 bg-[#0d0d0d]/65" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0d0d0d_60%)]" />
+          <div className="absolute inset-0 bg-[#0d0d0d]/20" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0d0d0d_72%)]" />
           <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0d0d0d] to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0d0d0d] to-transparent" />
         </div>
@@ -355,9 +368,7 @@ export default function GameDetailPage({ slug }: GameDetailPageProps) {
                     : "translate-y-0 opacity-100 blur-0"
                 }`}
                 style={{
-                  transform: `translateX(-${
-                    carouselIndex * (100 / 3)
-                  }%)`,
+                  transform: `translateX(-${carouselIndex * (100 / 3)}%)`,
                 }}
               >
                 {mediaItems.map((image, index) => (
@@ -426,7 +437,7 @@ export default function GameDetailPage({ slug }: GameDetailPageProps) {
             className="absolute inset-0 h-full w-full object-cover opacity-40 saturate-110"
           />
 
-          <div className="absolute inset-0 bg-[#0d0d0d]/55" />
+          <div className="absolute inset-0 bg-[#0d0d0d]/5" />
           <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0d0d0d] to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0d0d0d] to-transparent" />
 
