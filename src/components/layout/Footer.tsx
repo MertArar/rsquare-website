@@ -129,8 +129,9 @@ export default function Footer() {
         </div>
 
         {/* BRAND AREA */}
-        <div className="mt-20 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end lg:gap-8">
-          <div className="lg:col-span-3">
+        {/* Reesponsive Fixed */}
+        <div className="mt-20 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end lg:gap-6 xl:gap-8">
+          <div className="lg:col-span-2 xl:col-span-2 2xl:col-span-3">
             <motion.img
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -143,7 +144,7 @@ export default function Footer() {
             />
           </div>
 
-          <div className="lg:col-span-6">
+          <div className="min-w-0 lg:col-span-8 xl:col-span-7 2xl:col-span-6">
             <motion.div
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -151,9 +152,9 @@ export default function Footer() {
               viewport={{ once: true }}
               onMouseEnter={() => setIsBrandHovered(true)}
               onMouseLeave={() => setIsBrandHovered(false)}
-              className="inline-block cursor-default"
+              className="inline-block max-w-full cursor-default"
             >
-              <h2 className="text-[52px] font-semibold leading-[0.9] tracking-[-0.09em] sm:text-[74px] md:text-[98px] lg:text-[118px] xl:text-[138px]">
+              <h2 className="whitespace-nowrap text-[clamp(52px,8.8vw,138px)] font-semibold leading-[0.9] tracking-[-0.09em]">
                 {brandText.split("").map((char, index) => (
                   <motion.span
                     key={`${char}-${index}`}
@@ -170,7 +171,7 @@ export default function Footer() {
             </motion.div>
           </div>
 
-          <div className="lg:col-span-3 lg:justify-self-end">
+          <div className="lg:col-span-2 lg:justify-self-end xl:col-span-3">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
